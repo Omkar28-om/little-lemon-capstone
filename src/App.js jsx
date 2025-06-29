@@ -1,0 +1,67 @@
+import React, { useState } from "react";
+import "./App.css";
+
+function App() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    date: "",
+    time: "",
+    guests: 1,
+  });
+
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({...formData, [e.target.name]: e.target.value});
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (formData.name && formData.email && formData.date && formData.time) {
+      setSubmitted(true);
+    } else {
+      alert("Please fill in all fields");
+    }
+  };
+
+  return (
+    <main>
+      <h1>Little Lemon Table Booking</h1>
+      {submitted ? (
+        <p>Thank you for booking, {formData.name}!</p>
+      ) : (
+        <form onSubmit={handleSubmit} aria-label="Booking Form">
+          <label>
+            Name:
+            <input name="name" type="text" onChange={handleChange} required />
+          </label>
+          <label>
+            Email:
+            <input name="email" type="email" onChange={handleChange} required />
+          </label>
+          <label>
+            Date:
+            <input name="date" type="date" onChange={handleChange} required />
+          </label>
+          <label>
+            Time:
+            <select name="time" onChange={handleChange} required>
+              <option value="">Select time</option>
+              <option>18:00</option>
+              <option>19:00</option>
+              <option>20:00</option>
+            </select>
+          </label>
+          <label>
+            Guests:
+            <input name="guests" type="number" min="1" max="10" onChange={handleChange} required />
+          </label>
+          <button type="submit">Book</button>
+        </form>
+      )}
+    </main>
+  );
+}
+
+export default App;
