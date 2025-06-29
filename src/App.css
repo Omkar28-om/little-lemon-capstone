@@ -1,0 +1,14 @@
+main {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+  font-family: sans-serif;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+input, select, button {
+  padding: 0.5rem;
+}
